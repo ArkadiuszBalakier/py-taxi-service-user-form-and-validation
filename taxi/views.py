@@ -1,4 +1,3 @@
-
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy
@@ -85,17 +84,17 @@ class CarDeleteView(LoginRequiredMixin, generic.DeleteView):
 @login_required
 @require_POST
 def assign_driver_to_car_view(request, pk):
-  car = get_object_or_404(Car, pk=pk)
-  car.drivers.add(request.user)
-  return redirect("taxi:car-detail", pk=pk)
+    car = get_object_or_404(Car, pk=pk)
+    car.drivers.add(request.user)
+    return redirect("taxi:car-detail", pk=pk)
 
 
 @login_required
 @require_POST
 def remove_driver_from_car_view(request, pk):
-  car = get_object_or_404(Car, pk=pk)
-  car.drivers.remove(request.user)
-  return redirect("taxi:car-detail", pk=pk)
+    car = get_object_or_404(Car, pk=pk)
+    car.drivers.remove(request.user)
+    return redirect("taxi:car-detail", pk=pk)
 
 
 class DriverListView(LoginRequiredMixin, generic.ListView):
