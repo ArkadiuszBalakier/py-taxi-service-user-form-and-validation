@@ -8,7 +8,7 @@ from django.views.decorators.http import require_POST
 
 from .forms import (
     DriverLicenseUpdateForm,
-    CarForm)
+    CarForm, DriverCreationForm)
 from .models import Driver, Car, Manufacturer
 
 
@@ -112,7 +112,7 @@ class DriverDetailView(LoginRequiredMixin, generic.DetailView):
 
 class DriverCreateView(LoginRequiredMixin, generic.CreateView):
     model = get_user_model()
-    fields = "__all__"
+    form_class = DriverCreationForm
     success_url = reverse_lazy("taxi:driver-list")
 
 
